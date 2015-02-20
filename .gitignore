@@ -1,0 +1,127 @@
+###############################
+/app/
+
+Makefile*
+#[Dd]ebug*/
+#[Rr]elease*/
+*.[Dd]ebug
+*.[Rr]elease
+build*/
+bin*/
+lib*/
+temp/
+
+###############################
+*.dll
+*.a
+!liblua.a
+*.o
+*.so
+*.exe
+*.zip
+*.log
+*.mp3
+*.wav
+#*.ini
+
+###############################
+moc_*
+ui_*
+qrc_*
+log.*
+!log.py
+
+###############################
+*.user*
+*.config
+*.files
+*.includes
+*.creator
+*.autosave
+.qmake.cache
+.qmake.conf
+Thumbs.db
+*~
+~*
+
+###############################
+/USK_Project/test/sms/failed/*
+/USK_Project/test/sms/failed/*
+/USK_Project/test/sms/outgoing/*
+/USK_Project/test/sms/report/*
+/USK_Project/test/sms/sent/*
+
+!/USK_Project/test/sms/failed/*.txt
+!/USK_Project/test/sms/failed/*.sms
+!/USK_Project/test/sms/outgoing/*.txt
+!/USK_Project/test/sms/report/*.txt
+!/USK_Project/test/sms/sent/*.txt
+###############################
+/VLC/*
+vlc*/
+qtserialport*/
+pjproject*/
+SFML*/
+EmulUSK/EmulUSK
+
+###############################
+*.vcxproj*
+*.sln
+*.sdf
+*.suo
+
+###### python #################
+
+*.pyc
+**/.idea/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+_trial_temp/
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Rope
+.ropeproject
+
+# Django stuff:
+*.log
+*.pot
+
+# Sphinx documentation
+docs/_build/
