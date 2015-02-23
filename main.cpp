@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     qsrand(QDateTime::currentMSecsSinceEpoch());
     QuadTree tree(boundingRect);
     int falseCount = 0;
-    for (int i = 0; i < 500000; i++) {
+    for (int i = 0; i < 5000; i++) {
         qreal factorX = qrand() / (qreal)RAND_MAX;
         qreal factorY = qrand() / (qreal)RAND_MAX;
         qreal deltaX = boundingRect.width() * factorX;
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         }
     }
     QList<Point> points = tree.query(boundingRect);
-    qDebug() << falseCount << QuadTreeNode::splitCount << points.count() << tree.nodesCount() << tree.maxLevel();
+    qDebug() << falseCount << points.count() << tree.nodesCount() << tree.maxLevel();
     QPixmap pix(800,600);
     pix.fill(Qt::transparent);
     QPainter p(&pix);
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     rec.setSize(pix.size() - QSize(1, 1));
     QTime t;
     t.start();
-    //tree.render(&p, rec, points);
+    tree.render(&p, rec);
     qDebug() << t.elapsed();
 
 
@@ -55,12 +55,11 @@ int main(int argc, char *argv[])
     qDebug() << "queryTime" << t.elapsed();
     //59.132423,37.908972
     //59.116719,37.967203
-    tree2->render(&p, rec, points_2, queryRect);
+    pix.fill(Qt::transparent);
+    tree2->render(&p, rec, points_2, tree2->boundingRect());
     qDebug() << r.nodesCount() << points_2.count() << tree2->maxLevel();
-
-
+    points_2.clear();
 
     w.setPixmap(pix);
-    points_2.clear();
     return a.exec();
 }

@@ -43,7 +43,7 @@ QuadTree *OsmReader::makeTree()
                }
            }
            ++mNodesCount;
-           point.point = QPointF(lat, lon);
+           point.point = QPointF(lon, lat);
            points.append(point);
            minLat = qMin(minLat, lat);
            maxLat = qMax(maxLat, lat);
@@ -51,7 +51,7 @@ QuadTree *OsmReader::makeTree()
            maxLon = qMax(maxLon, lon);
         }
     }
-    tree = new QuadTree(QRectF(QPointF(minLat, minLon), QPointF(maxLat, maxLon)).normalized());
+    tree = new QuadTree(QRectF(QPointF(minLon, minLat), QPointF(maxLon, maxLat)).normalized());
     for (const Point &p : points) {
         tree->addPoint(p);
     }
