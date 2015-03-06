@@ -5,10 +5,8 @@
 #include <QList>
 #include <QString>
 
-struct Point {
-    QPointF point;
-    QString descr;
-};
+#include "point.h"
+
 
 class QPainter;
 

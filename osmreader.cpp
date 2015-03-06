@@ -14,7 +14,7 @@ OsmReader::~OsmReader()
 
 }
 
-QuadTree *OsmReader::makeTree()
+QuadTree *OsmReader::makeQuadTree()
 {
     QFile file(mPathToOsmFile);
     if (!file.open(QIODevice::ReadOnly)) {
@@ -55,6 +55,51 @@ QuadTree *OsmReader::makeTree()
     for (const Point &p : points) {
         tree->addPoint(p);
     }
+    return tree;
+}
+
+RTree *OsmReader::makeRTree()
+{
+    QFile file(mPathToOsmFile);
+    if (!file.open(QIODevice::ReadOnly)) {
+        return new  RTree();
+    }
+    RTree *tree = new RTree();
+    QXmlStreamReader xmlReader(&file);
+    qreal minLat = 44444444444444.;
+    qreal maxLat = -4444444444444.;
+    qreal minLon = 44444444444444.;
+    qreal maxLon = -4444444444444.;
+
+    while (!xmlReader.atEnd()) {
+        xmlReader.readNext();
+        if (xmlReader.isStartElement() && xmlReader.name() == "node") {
+           Point point;
+           qreal lat, lon;
+           lat = lon = 0.;
+           for (const QXmlStreamAttribute &attr : xmlReader.attributes()) {
+               if (attr.name() == "id") {
+                   point.descr = attr.value().toString();
+               } else if (attr.name() == "lat") {
+                   lat = attr.value().toString().toDouble();
+               } else if (attr.name() == "lon") {
+                   lon = attr.value().toString().toDouble();
+               }
+           }
+           ++mNodesCount;
+           if (lat< 40) {
+               qDebug() << "!!!!!";
+           }
+           point.point = QPointF(lon, lat);
+           //points.append(point);
+           tree->addPoint(point);
+           minLat = qMin(minLat, lat);
+           maxLat = qMax(maxLat, lat);
+           minLon = qMin(minLon, lon);
+           maxLon = qMax(maxLon, lon);
+        }
+    }
+
     return tree;
 }
 

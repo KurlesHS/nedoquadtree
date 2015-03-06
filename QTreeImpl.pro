@@ -17,10 +17,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         qtreeimplmainwindow.cpp \
     quadtree.cpp \
-    osmreader.cpp
+    osmreader.cpp \
+    rtree.cpp \
+    rtreewidget.cpp
 
 HEADERS  += qtreeimplmainwindow.h \
     quadtree.h \
-    osmreader.h
+    osmreader.h \
+    rtree.h \
+    point.h \
+    rtreewidget.h
 
 FORMS    += qtreeimplmainwindow.ui

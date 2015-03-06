@@ -3,13 +3,15 @@
 
 #include <QString>
 #include "quadtree.h"
+#include "rtree.h"
 
 class OsmReader
 {
 public:
     OsmReader(const QString &pathToOsmFile);
     ~OsmReader();
-    QuadTree *makeTree();
+    QuadTree *makeQuadTree();
+    RTree *makeRTree();
     int nodesCount() const;
 
 private:
